@@ -30,6 +30,17 @@ describe 'Normal Item' do
     end
   end
 
+  context 'sell_in = 0' do
+    bread = Item.new('Bread', 0, 10)
+    let(:items) { [bread] }
+
+    it 'should continue deceasing in sell_in by 1 each day' do
+      gilded_rose = GildedRose.new(items)
+      gilded_rose.update_quality()
+      expect(items[0].sell_in).to eq -1
+    end
+  end
+
   context 'value = 0' do
     bread = Item.new('Bread', 1, 0)
     let(:items) { [bread] }

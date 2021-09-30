@@ -35,4 +35,15 @@ describe 'Aged Brie' do
       expect(items[0].quality).to eq 12
     end
   end
+
+  context 'sell_in = 0' do
+    brie = Item.new('Aged Brie', 0, 10)
+    let(:items) { [brie] }
+  
+    it 'should continue deceasing in sell_in by 1 each day' do
+      gilded_rose = GildedRose.new(items)
+      gilded_rose.update_quality()
+      expect(items[0].sell_in).to eq -1
+    end
+  end
 end
