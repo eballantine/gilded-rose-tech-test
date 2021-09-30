@@ -18,25 +18,14 @@ class GildedRose
   end
 
   def update_value(item)
-    if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert"
-      if item.quality > 0 && item.name != "Sulfuras, Hand of Ragnaros"
-        item.quality -= 1
-      end
-    else
-      if item.quality < 50
+    if item.quality < 50
+      if item.name == "Aged Brie" || item.name == "Backstage passes to a TAFKAL80ETC concert"
         item.quality += 1
-
-        if item.name == "Backstage passes to a TAFKAL80ETC concert"
-          if item.sell_in < 11
-            item.quality += 1
-          end
-
-          if item.sell_in < 6 
-            item.quality += 1
-          end
-        end
+        backstage_bonus(item) if item.name == "Backstage passes to a TAFKAL80ETC concert"
+      else
+        item.quality -= 1 if item.quality > 0 
       end
-    end
+    end 
     sell_in_passed(item) if item.sell_in < 0 
   end
 
@@ -47,6 +36,15 @@ class GildedRose
       item.quality += 1
     elsif item.quality > 0 && item.name != "Sulfuras, Hand of Ragnaros"
       item.quality -= 1
+    end
+  end
+
+  def backstage_bonus(item)
+    if item.sell_in < 11 && item.quality < 50
+      item.quality += 1
+    end
+    if item.sell_in < 6 && item.quality < 50
+      item.quality += 1
     end
   end
 end
