@@ -1,4 +1,5 @@
 require 'gilded_rose'
+require 'item'
 
 describe 'Aged Brie' do
   

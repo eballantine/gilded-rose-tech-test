@@ -1,4 +1,5 @@
 require 'gilded_rose'
+require 'item'
 
 describe 'Sulfuras' do
   sulfuras = Item.new('Sulfuras, Hand of Ragnaros', 0, 80)
