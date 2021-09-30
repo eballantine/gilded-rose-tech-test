@@ -47,11 +47,9 @@ class GildedRose
   def sell_in_passed(item)
     if item.name == "Backstage passes to a TAFKAL80ETC concert"
       item.quality = 0 
-    elsif item.name == "Sulfuras, Hand of Ragnaros"
-      item.quality = 80
     elsif item.name == "Aged Brie" && item.quality < 50
       item.quality += 1
-    elsif item.quality > 0
+    elsif item.quality > 0 && item.name != "Sulfuras, Hand of Ragnaros"
       item.quality -= 1
     end
   end
