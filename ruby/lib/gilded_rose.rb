@@ -20,10 +20,10 @@ class GildedRose
   def update_value(item)
     if item.quality < 50
       if item.name == "Aged Brie" || item.name == "Backstage passes to a TAFKAL80ETC concert"
-        item.quality += 1
+        increase_quality(item)
         backstage_bonus(item) if item.name == "Backstage passes to a TAFKAL80ETC concert"
       else
-        item.quality -= 1 if item.quality > 0 
+        decrease_quality(item) 
       end
     end 
     sell_in_passed(item) if item.sell_in < 0 
@@ -32,19 +32,27 @@ class GildedRose
   def sell_in_passed(item)
     if item.name == "Backstage passes to a TAFKAL80ETC concert"
       item.quality = 0 
-    elsif item.name == "Aged Brie" && item.quality < 50
-      item.quality += 1
-    elsif item.quality > 0 && item.name != "Sulfuras, Hand of Ragnaros"
-      item.quality -= 1
+    elsif item.name == "Aged Brie" 
+      increase_quality(item)
+    elsif item.name != "Sulfuras, Hand of Ragnaros"
+      decrease_quality(item)
     end
   end
 
   def backstage_bonus(item)
-    if item.sell_in < 11 && item.quality < 50
-      item.quality += 1
+    if item.sell_in < 11 
+      increase_quality(item)
     end
-    if item.sell_in < 6 && item.quality < 50
-      item.quality += 1
+    if item.sell_in < 6 
+      increase_quality(item)
     end
+  end
+
+  def increase_quality(item)
+    item.quality += 1 unless item.value == 50
+  end
+
+  def decrease_quality(item)
+    item.quality -= 1 unless item.value == 0
   end
 end
