@@ -9,7 +9,7 @@ describe 'Normal Item' do
   
     it 'should decrease in value by 1 each day' do
       gilded_rose = GildedRose.new(items)
-      gilded_rose.update_quality()
+      gilded_rose.update_item_stats
       expect(items[0].quality).to eq 9
       expect(items[0].sell_in).to eq 9
     end
@@ -25,7 +25,7 @@ describe 'Normal Item' do
   
     it 'should decrease in value by 2 each day' do
       gilded_rose = GildedRose.new(items)
-      gilded_rose.update_quality()
+      gilded_rose.update_item_stats
       expect(items[0].quality).to eq 8
     end
   end
@@ -36,7 +36,7 @@ describe 'Normal Item' do
 
     it 'should continue deceasing in sell_in by 1 each day' do
       gilded_rose = GildedRose.new(items)
-      gilded_rose.update_quality()
+      gilded_rose.update_item_stats
       expect(items[0].sell_in).to eq -1
     end
   end
@@ -47,7 +47,7 @@ describe 'Normal Item' do
   
     it 'should never have a value less than 0' do
       gilded_rose = GildedRose.new(items)
-      gilded_rose.update_quality()
+      gilded_rose.update_item_stats
       expect(items[0].quality).to eq 0
     end
   end

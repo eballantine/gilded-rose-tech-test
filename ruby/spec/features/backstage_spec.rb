@@ -9,7 +9,7 @@ describe 'Backstage Pass' do
 
     it 'should increase in quality by 1' do
       gilded_rose = GildedRose.new(items)
-      gilded_rose.update_quality()
+      gilded_rose.update_item_stats
       expect(items[0].quality).to eq 11
     end
   end
@@ -20,7 +20,7 @@ describe 'Backstage Pass' do
 
     it 'should increase in quality by 2' do 
       gilded_rose = GildedRose.new(items)
-      gilded_rose.update_quality()
+      gilded_rose.update_item_stats
       expect(items[0].quality).to eq 12
     end
   end
@@ -31,7 +31,7 @@ describe 'Backstage Pass' do
 
     it 'should increase in quality by 3' do
       gilded_rose = GildedRose.new(items) 
-      gilded_rose.update_quality()
+      gilded_rose.update_item_stats
       expect(items[0].quality).to eq 13
     end
   end
@@ -42,7 +42,7 @@ describe 'Backstage Pass' do
     
     it 'should have a quality value of 0' do
       gilded_rose = GildedRose.new(items)
-      gilded_rose.update_quality()
+      gilded_rose.update_item_stats
       expect(items[0].quality).to eq 0
     end
   end
@@ -53,7 +53,7 @@ describe 'Backstage Pass' do
 
     it 'should continue deceasing in sell_in by 1 each day' do
       gilded_rose = GildedRose.new(items)
-      gilded_rose.update_quality()
+      gilded_rose.update_item_stats
       expect(items[0].sell_in).to eq -1
     end
   end

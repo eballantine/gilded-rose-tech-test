@@ -8,7 +8,7 @@ describe 'Conjured' do
   context 'always' do
     it 'should decrease in quality by 2 each day' do
       gilded_rose = GildedRose.new(items)
-      gilded_rose.update_quality()
+      gilded_rose.update_item_stats
       expect(items[0].quality).to eq 28
     end
   end
